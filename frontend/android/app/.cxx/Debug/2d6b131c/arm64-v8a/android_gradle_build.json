@@ -1,0 +1,42 @@
+{
+  "buildFiles": [
+    "/home/gma91/personal-curator/frontend/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/gma91/tools/android-sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/gma91/personal-curator/frontend/android/app/.cxx/Debug/2d6b131c/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/gma91/tools/android-sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/gma91/personal-curator/frontend/android/app/.cxx/Debug/2d6b131c/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "appmodules::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "appmodules",
+      "output": "/home/gma91/personal-curator/frontend/android/app/build/intermediates/cxx/Debug/2d6b131c/obj/arm64-v8a/libappmodules.so",
+      "runtimeFiles": [
+        "/home/gma91/.gradle/caches/8.10.2/transforms/678bdb38e171b3fe689ca3dfff58783a/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
+        "/home/gma91/.gradle/caches/8.10.2/transforms/950134a3b716e07d7300ff62a3c40fa2/transformed/react-android-0.80.0-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+        "/home/gma91/.gradle/caches/8.10.2/transforms/950134a3b716e07d7300ff62a3c40fa2/transformed/react-android-0.80.0-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so"
+      ]
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/home/gma91/tools/android-sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/home/gma91/tools/android-sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

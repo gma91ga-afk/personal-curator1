@@ -1,0 +1,6 @@
+# ninja log v5
+2	31	0	/home/gma91/personal-curator/frontend/android/app/.cxx/Debug/2d6b131c/arm64-v8a/CMakeFiles/cmake.verify_globs	a3374d8213b651fc
+2	7034	1778329726520084717	CMakeFiles/appmodules.dir/home/gma91/personal-curator/frontend/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	ccfe354c6091bf2a
+2	7397	1778329726892704456	CMakeFiles/appmodules.dir/OnLoad.cpp.o	578d5cca35a10283
+7397	7561	1778329727089481174	/home/gma91/personal-curator/frontend/android/app/build/intermediates/cxx/Debug/2d6b131c/obj/arm64-v8a/libappmodules.so	7fb3291269d8387b
+1	9	0	/home/gma91/personal-curator/frontend/android/app/.cxx/Debug/2d6b131c/arm64-v8a/CMakeFiles/cmake.verify_globs	a3374d8213b651fc

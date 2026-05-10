@@ -1,0 +1,96 @@
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+
+// Determine Hermes/JSC from project properties
+def useHermes = project.hasProperty('hermesEnabled') ? project.property('hermesEnabled').toBoolean() : false
+def jscFlavor = 'org.webkit:android-jsc:+'
+
+// Bundle JS into APK at build time (required for standalone APK without Metro server)
+def reactNativeDir = file("../../node_modules/react-native")
+def entryFile = file("../../index.js")
+def jsBundleDir = file("$buildDir/generated/assets/react/debug")
+def resourcesDir = file("$buildDir/generated/res/react/debug")
+
+task createDebugBundleJsAndAssets(type: Exec) {
+    workingDir file("../..")
+    commandLine "node", "${reactNativeDir}/cli.js", "bundle",
+        "--platform", "android",
+        "--dev", "true",
+        "--entry-file", entryFile,
+        "--bundle-output", "${projectDir}/src/main/assets/index.android.bundle",
+        "--assets-dest", "${projectDir}/src/main/res"
+    inputs.file entryFile
+    outputs.file "${projectDir}/src/main/assets/index.android.bundle"
+    outputs.upToDateWhen { false }
+}
+
+// Force bundle to run before packaging
+tasks.matching { it.name.contains("mergeDebugAssets") }.all {
+    it.inputs.file("${projectDir}/src/main/assets/index.android.bundle")
+    it.dependsOn createDebugBundleJsAndAssets
+}
+
+android {
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
+    namespace "com.curatorapp"
+
+    defaultConfig {
+        applicationId "com.curatorapp"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    splits {
+        abi {
+            reset()
+            enable true
+            universalApk true
+            include "arm64-v8a", "armeabi-v7a"
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+dependencies {
+    implementation("com.facebook.react:react-android:0.73.6")
+
+    if (useHermes) {
+        implementation("com.facebook.react:hermes-android:0.73.6")
+    } else {
+        implementation jscFlavor
+    }
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
+}
+
+// React Native autolinking
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

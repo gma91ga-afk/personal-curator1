@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Curator</string>
+
+    <!-- Primary/elevated surface colors -->
+    <color name="primary">#6C5CE7</color>
+    <color name="primary_dark">#4834D4</color>
+    <color name="accent">#A29BFE</color>
+    <color name="background">#0F0F1A</color>
+    <color name="surface">#1A1A2E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0C8</color>
+
+    <!-- Light navigation bar for dark theme -->
+    <color name="navigation_bar">#0F0F1A</color>
+    <color name="status_bar">#0F0F1A</color>
+</resources>

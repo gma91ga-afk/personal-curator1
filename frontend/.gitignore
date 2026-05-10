@@ -1,0 +1,14 @@
+# Curator App
+.env
+*.log
+node_modules/
+android/.gradle/
+android/app/build/
+android/build/
+ios/Pods/
+ios/build/
+.expo/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
